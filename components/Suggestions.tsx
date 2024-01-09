@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import minifaker from 'minifaker';
+// @ts-ignore
+import * as minifaker from 'minifaker';
+// @ts-ignore
 import 'minifaker/locales/en';
 
 interface SuggestionsType {
