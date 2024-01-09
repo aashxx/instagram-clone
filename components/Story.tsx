@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+// @ts-ignore
 import minifaker from 'minifaker';
 import "minifaker/locales/en";
 import StoryUser from './StoryUser';

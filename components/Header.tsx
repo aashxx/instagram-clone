@@ -7,6 +7,8 @@ import { FaCirclePlus } from 'react-icons/fa6';
 import { GoHomeFill } from "react-icons/go";
 import { auth } from '@/firebase';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import { modalState } from '@/atom/modalAtom';
 
 
 const Header = () => {
@@ -26,12 +28,14 @@ const Header = () => {
         router.reload();
     }
 
+    const [open, setOpen] = useRecoilState(modalState);
+
     return (
         <div className='shadow-sm border-b sticky bg-white z-30 top-0'>
             <div className='flex items-center justify-between max-w-6xl mx-4 xl:mx-auto'>
                 {/* Left  */}
                 <div className='cursor-pointer h-24 w-24 relative hidden lg:inline-grid'>
-                    <Image src={"https://1000logos.net/wp-content/uploads/2017/02/Logo-Instagram.png"} alt='Instagram' layout='fill' className='object-contain relative' />
+                    <Image src={"https://1000logos.net/wp-content/uploads/2017/02/Logo-Instagram.png"} onClick={() => router.push('/')} alt='Instagram' layout='fill' className='object-contain relative' />
                 </div>
                 <div className='cursor-pointer h-24 w-10 relative lg:hidden'>
                     <Image src={"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png"} alt='Instagram' layout='fill' className='object-contain' />
@@ -48,15 +52,15 @@ const Header = () => {
 
                 {/* right */}
                 <div className='flex space-x-4 items-center'>
-                    <p className='text-2xl hidden md:inline-flex cursor-pointer hover:scale-125 transition-transform duration-200 ease-out'>
+                    <button onClick={() => router.push('/')} className='text-2xl hidden md:inline-flex cursor-pointer hover:scale-125 transition-transform duration-200 ease-out'>
                         <GoHomeFill />
-                    </p>
+                    </button>
                     {
                         storedUser ? (
                             <>
-                                <p className='text-2xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out'>
+                                <button onClick={() => setOpen(true)} className='text-2xl cursor-pointer hover:scale-125 transition-transform duration-200 ease-out'>
                                     <FaCirclePlus />
-                                </p>
+                                </button>
                                 <button onClick={handleSignOut} id='profile'>
                                     <img src={storedUser.photoURL} alt="userPic" className='h-10 rounded-full cursor-pointer' />
                                 </button>
