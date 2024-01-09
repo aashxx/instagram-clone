@@ -10,6 +10,14 @@ interface StoryUserType {
     id: string;
 }
 
+interface PostTypes {
+    image: string,
+    userImg: string,
+    caption: string,
+    username: string,
+    id: string
+}
+
 interface User {
     photoURL: string,
     displayName: string,
